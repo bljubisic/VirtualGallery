@@ -1,0 +1,445 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E42D55A615BF3BC600887F92 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42D55A515BF3BC600887F92 /* UIKit.framework */; };
+		E42D55A815BF3BC600887F92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42D55A715BF3BC600887F92 /* Foundation.framework */; };
+		E42D55AA15BF3BC600887F92 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42D55A915BF3BC600887F92 /* CoreGraphics.framework */; };
+		E42D55B015BF3BC600887F92 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E42D55AE15BF3BC600887F92 /* InfoPlist.strings */; };
+		E42D55B215BF3BC600887F92 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E42D55B115BF3BC600887F92 /* main.m */; };
+		E42D55B615BF3BC600887F92 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E42D55B515BF3BC600887F92 /* AppDelegate.m */; };
+		E42D55B915BF3BC600887F92 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E42D55B715BF3BC600887F92 /* MainStoryboard.storyboard */; };
+		E42D55BC15BF3BC600887F92 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E42D55BB15BF3BC600887F92 /* ViewController.m */; };
+		E42D55C415BF3BC600887F92 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42D55C315BF3BC600887F92 /* SenTestingKit.framework */; };
+		E42D55C515BF3BC600887F92 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42D55A515BF3BC600887F92 /* UIKit.framework */; };
+		E42D55C615BF3BC600887F92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42D55A715BF3BC600887F92 /* Foundation.framework */; };
+		E42D55CE15BF3BC600887F92 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E42D55CC15BF3BC600887F92 /* InfoPlist.strings */; };
+		E42D55D115BF3BC600887F92 /* Virtual_GalleryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E42D55D015BF3BC600887F92 /* Virtual_GalleryTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E42D55C715BF3BC600887F92 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E42D559815BF3BC600887F92 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E42D55A015BF3BC600887F92;
+			remoteInfo = "Virtual Gallery";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E42D55A115BF3BC600887F92 /* Virtual Gallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Virtual Gallery.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E42D55A515BF3BC600887F92 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E42D55A715BF3BC600887F92 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E42D55A915BF3BC600887F92 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E42D55AD15BF3BC600887F92 /* Virtual Gallery-Info.plist */ = {isa = PBXFileReference; path = "Virtual Gallery-Info.plist"; sourceTree = "<group>"; };
+		E42D55AF15BF3BC600887F92 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E42D55B115BF3BC600887F92 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E42D55B315BF3BC600887F92 /* Virtual Gallery-Prefix.pch */ = {isa = PBXFileReference; path = "Virtual Gallery-Prefix.pch"; sourceTree = "<group>"; };
+		E42D55B415BF3BC600887F92 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		E42D55B515BF3BC600887F92 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E42D55B815BF3BC600887F92 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		E42D55BA15BF3BC600887F92 /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		E42D55BB15BF3BC600887F92 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E42D55C215BF3BC600887F92 /* Virtual GalleryTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Virtual GalleryTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E42D55C315BF3BC600887F92 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		E42D55CB15BF3BC600887F92 /* Virtual GalleryTests-Info.plist */ = {isa = PBXFileReference; path = "Virtual GalleryTests-Info.plist"; sourceTree = "<group>"; };
+		E42D55CD15BF3BC600887F92 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E42D55CF15BF3BC600887F92 /* Virtual_GalleryTests.h */ = {isa = PBXFileReference; path = Virtual_GalleryTests.h; sourceTree = "<group>"; };
+		E42D55D015BF3BC600887F92 /* Virtual_GalleryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Virtual_GalleryTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E42D559E15BF3BC600887F92 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E42D55A615BF3BC600887F92 /* UIKit.framework in Frameworks */,
+				E42D55A815BF3BC600887F92 /* Foundation.framework in Frameworks */,
+				E42D55AA15BF3BC600887F92 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E42D55BE15BF3BC600887F92 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E42D55C415BF3BC600887F92 /* SenTestingKit.framework in Frameworks */,
+				E42D55C515BF3BC600887F92 /* UIKit.framework in Frameworks */,
+				E42D55C615BF3BC600887F92 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E42D559615BF3BC600887F92 = {
+			isa = PBXGroup;
+			children = (
+				E42D55AB15BF3BC600887F92 /* Virtual Gallery */,
+				E42D55C915BF3BC600887F92 /* Virtual GalleryTests */,
+				E42D55A415BF3BC600887F92 /* Frameworks */,
+				E42D55A215BF3BC600887F92 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E42D55A215BF3BC600887F92 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E42D55A115BF3BC600887F92 /* Virtual Gallery.app */,
+				E42D55C215BF3BC600887F92 /* Virtual GalleryTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E42D55A415BF3BC600887F92 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E42D55A515BF3BC600887F92 /* UIKit.framework */,
+				E42D55A715BF3BC600887F92 /* Foundation.framework */,
+				E42D55A915BF3BC600887F92 /* CoreGraphics.framework */,
+				E42D55C315BF3BC600887F92 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E42D55AB15BF3BC600887F92 /* Virtual Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				E42D55B415BF3BC600887F92 /* AppDelegate.h */,
+				E42D55B515BF3BC600887F92 /* AppDelegate.m */,
+				E42D55B715BF3BC600887F92 /* MainStoryboard.storyboard */,
+				E42D55BA15BF3BC600887F92 /* ViewController.h */,
+				E42D55BB15BF3BC600887F92 /* ViewController.m */,
+				E42D55AC15BF3BC600887F92 /* Supporting Files */,
+			);
+			path = "Virtual Gallery";
+			sourceTree = "<group>";
+		};
+		E42D55AC15BF3BC600887F92 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E42D55AD15BF3BC600887F92 /* Virtual Gallery-Info.plist */,
+				E42D55AE15BF3BC600887F92 /* InfoPlist.strings */,
+				E42D55B115BF3BC600887F92 /* main.m */,
+				E42D55B315BF3BC600887F92 /* Virtual Gallery-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E42D55C915BF3BC600887F92 /* Virtual GalleryTests */ = {
+			isa = PBXGroup;
+			children = (
+				E42D55CF15BF3BC600887F92 /* Virtual_GalleryTests.h */,
+				E42D55D015BF3BC600887F92 /* Virtual_GalleryTests.m */,
+				E42D55CA15BF3BC600887F92 /* Supporting Files */,
+			);
+			path = "Virtual GalleryTests";
+			sourceTree = "<group>";
+		};
+		E42D55CA15BF3BC600887F92 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E42D55CB15BF3BC600887F92 /* Virtual GalleryTests-Info.plist */,
+				E42D55CC15BF3BC600887F92 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E42D55A015BF3BC600887F92 /* Virtual Gallery */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E42D55D415BF3BC600887F92 /* Build configuration list for PBXNativeTarget "Virtual Gallery" */;
+			buildPhases = (
+				E42D559D15BF3BC600887F92 /* Sources */,
+				E42D559E15BF3BC600887F92 /* Frameworks */,
+				E42D559F15BF3BC600887F92 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Virtual Gallery";
+			productName = "Virtual Gallery";
+			productReference = E42D55A115BF3BC600887F92 /* Virtual Gallery.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E42D55C115BF3BC600887F92 /* Virtual GalleryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E42D55D715BF3BC600887F92 /* Build configuration list for PBXNativeTarget "Virtual GalleryTests" */;
+			buildPhases = (
+				E42D55BD15BF3BC600887F92 /* Sources */,
+				E42D55BE15BF3BC600887F92 /* Frameworks */,
+				E42D55BF15BF3BC600887F92 /* Resources */,
+				E42D55C015BF3BC600887F92 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E42D55C815BF3BC600887F92 /* PBXTargetDependency */,
+			);
+			name = "Virtual GalleryTests";
+			productName = "Virtual GalleryTests";
+			productReference = E42D55C215BF3BC600887F92 /* Virtual GalleryTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E42D559815BF3BC600887F92 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Gtech Beograd";
+			};
+			buildConfigurationList = E42D559B15BF3BC600887F92 /* Build configuration list for PBXProject "Virtual Gallery" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E42D559615BF3BC600887F92;
+			productRefGroup = E42D55A215BF3BC600887F92 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E42D55A015BF3BC600887F92 /* Virtual Gallery */,
+				E42D55C115BF3BC600887F92 /* Virtual GalleryTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E42D559F15BF3BC600887F92 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E42D55B015BF3BC600887F92 /* InfoPlist.strings in Resources */,
+				E42D55B915BF3BC600887F92 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E42D55BF15BF3BC600887F92 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E42D55CE15BF3BC600887F92 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E42D55C015BF3BC600887F92 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E42D559D15BF3BC600887F92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E42D55B215BF3BC600887F92 /* main.m in Sources */,
+				E42D55B615BF3BC600887F92 /* AppDelegate.m in Sources */,
+				E42D55BC15BF3BC600887F92 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E42D55BD15BF3BC600887F92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E42D55D115BF3BC600887F92 /* Virtual_GalleryTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E42D55C815BF3BC600887F92 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E42D55A015BF3BC600887F92 /* Virtual Gallery */;
+			targetProxy = E42D55C715BF3BC600887F92 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E42D55AE15BF3BC600887F92 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E42D55AF15BF3BC600887F92 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E42D55B715BF3BC600887F92 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E42D55B815BF3BC600887F92 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		E42D55CC15BF3BC600887F92 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E42D55CD15BF3BC600887F92 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E42D55D215BF3BC600887F92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E42D55D315BF3BC600887F92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E42D55D515BF3BC600887F92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Virtual Gallery/Virtual Gallery-Prefix.pch";
+				INFOPLIST_FILE = "Virtual Gallery/Virtual Gallery-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E42D55D615BF3BC600887F92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Virtual Gallery/Virtual Gallery-Prefix.pch";
+				INFOPLIST_FILE = "Virtual Gallery/Virtual Gallery-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E42D55D815BF3BC600887F92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Virtual Gallery.app/Virtual Gallery";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Virtual Gallery/Virtual Gallery-Prefix.pch";
+				INFOPLIST_FILE = "Virtual GalleryTests/Virtual GalleryTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		E42D55D915BF3BC600887F92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Virtual Gallery.app/Virtual Gallery";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Virtual Gallery/Virtual Gallery-Prefix.pch";
+				INFOPLIST_FILE = "Virtual GalleryTests/Virtual GalleryTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E42D559B15BF3BC600887F92 /* Build configuration list for PBXProject "Virtual Gallery" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E42D55D215BF3BC600887F92 /* Debug */,
+				E42D55D315BF3BC600887F92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E42D55D415BF3BC600887F92 /* Build configuration list for PBXNativeTarget "Virtual Gallery" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E42D55D515BF3BC600887F92 /* Debug */,
+				E42D55D615BF3BC600887F92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E42D55D715BF3BC600887F92 /* Build configuration list for PBXNativeTarget "Virtual GalleryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E42D55D815BF3BC600887F92 /* Debug */,
+				E42D55D915BF3BC600887F92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E42D559815BF3BC600887F92 /* Project object */;
+}
