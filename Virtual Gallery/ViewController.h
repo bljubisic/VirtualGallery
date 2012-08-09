@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ImageObject.h"
 
-@interface ViewController : UIViewController
+
+#define STARTX 0
+#define STARTY 0
+#define MIDX 240
+#define MIDY 138
+#define ENDX 480
+#define ENDY 276
+
+@interface ViewController : UIViewController <UIGestureRecognizerDelegate>
+@property (weak, nonatomic) IBOutlet UIView *pictView;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *searchButton;
+- (IBAction)pressedSearchButton:(id)sender;
 
 @end
