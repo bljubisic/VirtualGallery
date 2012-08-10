@@ -16,12 +16,17 @@
 @synthesize position;
 @synthesize imageView;
 @synthesize positionIndex;
+@synthesize description;
+@synthesize title;
+@synthesize author;
+@synthesize year;
+@synthesize tags;
 
--(UIView *) createImageView:(NSNumber *)positionIndex withColor:(UIColor *) color {
+-(UIView *) createImageView:(NSNumber *)positionIndexM withColor:(UIColor *) color {
     
     int startX = 0;
     int startY = 0;
-    int positionIndexInt = [positionIndex intValue];
+    int positionIndexInt = [positionIndexM intValue];
     
     if(positionIndexInt < 3)
         startY = STARTY;
@@ -44,15 +49,6 @@
     view.center = CGPointMake(startX, startY);
     NSLog(@"create image view on position %d on x: %d y:%d", [positionIndex intValue], startX, startY);
     return view;
-}
-
--(UIPanGestureRecognizer *) createGestureRecognizer {
-    UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(move:)];
-    [panRecognizer setMinimumNumberOfTouches:1];
-    [panRecognizer setMaximumNumberOfTouches:1];
-    //[panRecognizer setDelegate:self];
-    
-    return panRecognizer;
 }
 
 @end

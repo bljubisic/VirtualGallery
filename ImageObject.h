@@ -21,6 +21,11 @@
 @property (nonatomic, retain) NSString *position;
 @property (nonatomic, retain) UIView *imageView;
 @property (nonatomic, retain) NSNumber *positionIndex;
+@property (nonatomic, weak) NSString *description;
+@property (nonatomic, weak) NSString *tags;
+@property (nonatomic, weak) NSString *author;
+@property (nonatomic, weak) NSNumber *year;
+@property (nonatomic, weak) NSString *title;
 
 - (UIView *) createImageView: (NSNumber *)positionIndex withColor: (UIColor *) color;
 
