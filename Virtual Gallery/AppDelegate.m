@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <PXAPI/PXRequest.h>
 
 @implementation AppDelegate
 
@@ -15,6 +16,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    [PXRequest setConsumerKey:@"bJIWpSFuD1lhcEzdl1Iss452mNEq4LbMEIWxV9F4" consumerSecret:@"0gux5pA3HanYTr8K78KQ9pPydNvJ12Sy0rSbpypL"];
     return YES;
 }
 							

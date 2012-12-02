@@ -10,10 +10,11 @@
 
 @interface Criteria : NSObject
 
-@property (nonatomic, weak) NSString *category;
-@property (nonatomic, weak) NSString *freeText;
-@property (nonatomic, weak) NSNumber *year;
-@property (nonatomic, weak) NSString *author;
-@property (nonatomic, weak) NSString *tags;
+@property (nonatomic, strong) NSString *category;
+@property (nonatomic, strong) NSString *freeText;
+@property (nonatomic, strong) NSNumber *year;
+@property (nonatomic, strong) NSString *author;
+@property (nonatomic, strong) NSString *tags;
 
+-(id) initWithData: (NSArray *) searchData;
 @end
