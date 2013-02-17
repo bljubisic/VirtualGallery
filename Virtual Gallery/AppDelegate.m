@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import <PXAPI/PXRequest.h>
+#import <PXAPI/PXAPI.h>
+
 
 @implementation AppDelegate
 

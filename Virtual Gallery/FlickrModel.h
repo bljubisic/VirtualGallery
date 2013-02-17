@@ -15,7 +15,12 @@
 
 @optional
 
-- (void) flickrResponseReceived:(NSDictionary *) response;
+- (void) receivedCentralFromFlickr:(NSArray *) arrayResults;
+- (void) receivedFuzzyFromFlickr:(NSArray *) arrayResults;
+- (void) flickrResponseReceivedImageInfo:(NSDictionary *) response;
+- (void) receivedImageInfoForFuzzyForFlickr:(NSDictionary *) response;
+- (void) flickrResponseReceivedImageInfoForExif:(NSDictionary *)response;
+- (void) flickrError;
 
 @end
 
@@ -41,11 +46,12 @@
 
 - (id)initWithAPIKey:(NSString *)inKey sharedSecret:(NSString *)inSharedSecret;
 - (BOOL) login:(NSString *) username withPass: (NSString *) password;
-- (void) getRecentImages;
+- (void) getRecentImages:(BOOL) forFuzzy;
 - (void) getFuzzyRelatedImagesFor:(NSArray *) tags;
-- (void) getImageInfo:(NSDictionary *) image;
+- (void) getImageInfo:(NSString *) imageID;
+- (void) getImageInfoForFuzzy:(NSString *)imageID;
 - (void) getSearchResultFor:(Criteria *) criteria;
 - (BOOL) uploadImage: (ImageObject *) image;
-- (void) flickrResponseReceived:(NSDictionary *) response;
+- (void) getImageExif: (NSString *) imageID;
 
 @end

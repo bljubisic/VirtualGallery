@@ -10,6 +10,7 @@
 #import "ImageObject.h"
 #import "FlickrModel.h"
 #import "ImageModel.h"
+#import "ImageDetailsViewController.h"
 
 #define STARTX 0
 #define STARTY 0
@@ -18,7 +19,8 @@
 #define ENDX 480
 #define ENDY 276
 
-@interface ViewController : UIViewController <UIGestureRecognizerDelegate, UISearchBarDelegate, ImageModelDelegate>
+
+@interface ViewController : UIViewController <UIGestureRecognizerDelegate, UISearchBarDelegate, ImageModelDelegate, ImageDetailsDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UIView *pictView;
@@ -28,9 +30,11 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addButton;
 @property (strong, retain) ImageModel *model;
 @property (weak, nonatomic) IBOutlet UIView *searchView;
-
+@property (strong, retain) UIActivityIndicatorView *spinner;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *shareButton;
 
 - (IBAction)pressedSearchButton:(id)sender;
+- (IBAction)pressedShareButton:(id) sender;
 - (IBAction)peopleValueChanged:(id) sender;
 - (void) loadFinished: (NSNotification *) notification;
 - (UIPanGestureRecognizer *) createGestureRecognizer;
@@ -38,12 +42,11 @@
 - (void) move: (id) sender;
 - (void) moveMidOuterImage: (NSString *) initialPosition;
 - (void) moveCentralImage:(int) changeIndex;
-- (void)viewIntersectsWithAnotherView:(UIView*)selectedView;
 - (void) resetViews;
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar;
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar;
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar;
 - (void)clearViews;
-- (void)imageInfoReceived:(NSDictionary *)response;
+- (void)imageInfoReceived:(ImageObject *) photo;
 
 @end

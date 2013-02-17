@@ -9,23 +9,28 @@
 #import <Foundation/Foundation.h>
 #import "ImageObject.h"
 #import "FlickrModel.h"
+#import "PXModel.h"
 #import "Criteria.h"
 
 @protocol ImageModelDelegate <NSObject>
 
 @optional
 
-- (void) imageInfoReceived:(NSDictionary *) response;
+- (void) imageInfoReceived:(ImageObject *) photo;
+- (void) loadFinished:(NSArray *) results;
+- (void) imageInfoExifReceived:(ImageObject *) photo;
 
 @end
 
-@interface ImageModel : NSObject <FlickrModelDelegate> {
+@interface ImageModel : NSObject <FlickrModelDelegate, PXModelDelegate> {
     id <ImageModelDelegate> delegate;
     NSMutableArray *centralImages;
     NSMutableArray *fuzzyImages;
     NSMutableArray *returnArray;
-    NSDictionary *movedImage;
+    ImageObject *movedImage;
+    BOOL movedImageBool;
     FlickrModel *flickrModel;
+    PXModel *pxModel;
 }
 
 @property (retain) id delegate;
@@ -38,8 +43,6 @@
 // This will return array of central images
 -(NSArray *) getCentralImages;
 
-// This will return array of fuzzy images for central image
--(void) getFuzzyImagesForImage: (NSDictionary *) image;
 
 // Add image on flickr
 -(void) addImages:(NSArray *) images toFlickrAccount: (NSString *) username;
@@ -51,6 +54,8 @@
 
 -(void) moveOuterImageFromPosition: (int) position;
 
--(void) getImageInfo:(NSString *) imageID;
+-(void) getImageInfo:(ImageObject *) image;
+
+-(void) getImageExif:(ImageObject *) image;
 
 @end

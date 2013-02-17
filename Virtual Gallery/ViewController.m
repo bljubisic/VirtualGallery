@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "QuartzCore/QuartzCore.h"
 
-
+#define degreesToRadian(x) (M_PI * (x) / 180.0)
 
 @interface ViewController () {
     int firstX;
@@ -23,8 +23,7 @@
     UIView *tmpView;
     BOOL detailsTouched;
     UILabel *titleLabel;
-    
-    
+    ImageObject *imageSelected;
 }
 @end
 
@@ -36,6 +35,7 @@
 @synthesize mainToolbar;
 @synthesize commandTextField;
 @synthesize searchView;
+@synthesize spinner;
 
 - (void)viewDidLoad
 {
@@ -61,25 +61,26 @@
     [model setDelegate:self];
     centralIndex = 0;
     tmpView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(loadFinished:)
-                                                 name:@"LoadFinished"
-                                               object:nil];
     //[mainToolbar setFrame:CGRectMake(0, 50, 320, 20)];
     [pictView bringSubviewToFront:mainToolbar];
     addButton = [mainToolbar.items objectAtIndex:2];
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [spinner setCenter:CGPointMake(480/2.0, 271/2.0)]; // I do this because I'm in landscape mode
+    [self.pictView addSubview:spinner]; // spinner is not visible until started
+    [pictView bringSubviewToFront:spinner];
+    [spinner startAnimating];
     [model getImagesWithCriteria: nil];
     detailsTouched = NO;
+
 }
 
--(void) loadFinished: (NSNotification *) notification {
-    NSArray *imagesArray = (NSArray *) [notification object];
+-(void) loadFinished: (NSArray *) imagesArray {
+    
     int l = ([imagesArray count] > 9)? 9: [imagesArray count];
     imagesHolder = [[NSMutableArray alloc] init];
     viewsHolder = [[NSMutableArray alloc] init];
     for(int i = 0; i < l; i++) {
-        NSDictionary *imageData = imagesArray[i];
-        ImageObject *image = [[ImageObject alloc] initWithData:imageData];
+        ImageObject *image = imagesArray[i];
         
         UIView *viewPurple = [image createImageViewOn:@(i) withColor:[UIColor purpleColor]];
         
@@ -94,6 +95,7 @@
         [viewsHolder addObject:viewPurple];
     }
     [pictView bringSubviewToFront:mainToolbar];
+    [spinner stopAnimating];
 }
 
 -(UIPanGestureRecognizer *) createGestureRecognizer {
@@ -136,18 +138,51 @@
     [titleLabel setBackgroundColor:[UIColor clearColor]];
     [titleLabel setTextColor:[UIColor colorWithRed:157.0/255.0 green:157.0/255.0 blue:157.0/255.0 alpha:1.0]];
     [titleLabel setText:@"Title"];
-    [titleLabel setTextAlignment:UITextAlignmentCenter];
+    //[titleLabel setTextAlignment:UITexta];
     
     UIBarButtonItem *title = [[UIBarButtonItem alloc] initWithCustomView:titleLabel];
     [toolbarButtons insertObject:title atIndex:2];
     [self.mainToolbar setItems:toolbarButtons animated:YES];
     int index = [viewsHolder indexOfObject:[sender view]];
     ImageObject *tmpImage = [imagesHolder objectAtIndex:index];
-    if(!detailsTouched) {
-        detailsTouched = YES;
-        [model getImageInfo:tmpImage.imageID];
+    [model getImageInfo:tmpImage];
+    if(index != 4) {
+        if(!detailsTouched) {
+            detailsTouched = YES;
+            imageSelected = tmpImage;
+        }
     }
+    else
+        [self showCentralImage: tmpImage];
 
+}
+
+-(void) showCentralImage: (ImageObject *) image {
+    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainStoryboard"
+                                                  bundle:nil];
+    ImageDetailsViewController *imageDetails = [sb instantiateViewControllerWithIdentifier:@"DetailsViewController"];
+    
+    imageDetails.delegate = self;
+    [imageDetails setImage: image];
+    [imageDetails setModel:model];
+    [self presentViewController:imageDetails animated:YES completion:nil];
+}
+
+-(void) doneButtonPressed {
+
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [UIView beginAnimations:@"View Flip" context:nil];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [model setDelegate:self];
+    //[[UIApplication sharedApplication] setStatusBarHidden:YES animated:NO];
+    if (self.interfaceOrientation == UIInterfaceOrientationPortrait) {
+        self.view.transform = CGAffineTransformIdentity;
+        self.view.transform = CGAffineTransformMakeRotation(degreesToRadian(90));
+        self.view.bounds = CGRectMake(0.0, 0.0, 480, 320);
+    }
+    
+    [UIView commitAnimations];
 }
 
 -(void)move:(id)sender {
@@ -155,24 +190,7 @@
     
     CGPoint translatedPoint = [recognizer translationInView:pictView];
     if([recognizer state] == UIGestureRecognizerStateEnded) {
-        /*
-        CGRect senderViewFrame = [[sender view] frame];
-        NSLog(@"senderViewFrame: %f : %f", senderViewFrame.size.height, senderViewFrame.size.width );
-        senderViewFrame.size.height -= 20;
-        senderViewFrame.size.width -= 20;
-        [[sender view] setFrame: senderViewFrame];
-        NSLog(@"resized senderViewFrame: %f : %f", senderViewFrame.size.height, senderViewFrame.size.width );
-        
-        int index = [viewsHolder indexOfObject:[sender view]];
-        ImageObject *tmpImage = [imagesHolder objectAtIndex:index];
-        
-        CGRect imageFrame = [tmpImage.imageView frame];
-        NSLog(@"imageFame: %f : %f", imageFrame.size.height, imageFrame.size.width );
-        imageFrame.size.height -= 20;
-        imageFrame.size.width -= 20;
-        [tmpImage.imageView setFrame:imageFrame];
-        NSLog(@"resized imageFame: %f : %f", imageFrame.size.height, imageFrame.size.width );
-         */
+
         [sender view].layer.shadowColor = [[UIColor clearColor] CGColor];
         [sender view].layer.shadowOffset = CGSizeMake(0, 0);
         [sender view].layer.shadowOpacity = 0;
@@ -241,7 +259,7 @@
                 moved = YES;
             } else
                 translatedPoint = CGPointMake(startX, startY);
-            if([initialPosition hasPrefix:@"mid"] && moved)
+            if(([initialPosition isEqualToString:@"midRight"] || [initialPosition isEqualToString:@"midLeft"]) && moved)
                 [self moveMidOuterImage: initialPosition];
             else if(!moved)
                 [tmpView removeFromSuperview];
@@ -339,7 +357,9 @@
     else if([initialPositionTmp isEqualToString:@"midDown"])
         position = 7;
     else position = 8;
-    
+    [pictView bringSubviewToFront:spinner];
+    [spinner startAnimating];
+    centralIndex = 0;
     [model moveOuterImageFromPosition:position];
         
 }
@@ -355,7 +375,9 @@
         changeIndex = -1;
     int changedIndex = centralIndex + changeIndex;
     centralIndex = changedIndex;
-    NSLog(@"moveOuter ChangeIndex: %d: %d", changedIndex, changeIndex);
+    //NSLog(@"moveOuter ChangeIndex: %d: %d", changedIndex, changeIndex);
+    [pictView bringSubviewToFront:spinner];
+    [spinner startAnimating];
     [model moveCentralImageWithIndex:changedIndex];
 }
 
@@ -364,7 +386,9 @@
     [self clearViews];
     int changedIndex = centralIndex + changeIndex;
     centralIndex = centralIndex + changeIndex;
-    NSLog(@"moveCentral ChangeIndex: %d: %d", changedIndex, changeIndex);
+    //NSLog(@"moveCentral ChangeIndex: %d: %d", changedIndex, changeIndex);
+    [pictView bringSubviewToFront:spinner];
+    [spinner startAnimating];
     [model moveCentralImageWithIndex:changedIndex];
     
 }
@@ -372,7 +396,7 @@
 - (void) clearViews {
     
     for (UIView *subView in [[self pictView] subviews]) {
-        if(![subView isEqual:mainToolbar] && ![subView isEqual:searchView])
+        if(![subView isEqual:mainToolbar] && ![subView isEqual:searchView] && ![subView isEqual:spinner])
             [subView removeFromSuperview];
     }
     
@@ -389,6 +413,16 @@
     }
 }
 
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationLandscapeLeft;
+}
+
 - (void)viewDidUnload
 {
     [self setPictView:nil];
@@ -400,12 +434,6 @@
     // Release any retained subviews of the main view.
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
-    
-    //return NO;
-}
 
 - (IBAction)pressedSearchButton:(id)sender {
     if(searchView.hidden == YES) {
@@ -419,6 +447,44 @@
     
 }
 
+- (IBAction)pressedShareButton:(id)sender {
+    NSArray *activityItems;
+    NSString *postText = @"Seen on #virtualgallery: ";
+    if (imageSelected != nil) {
+        /*
+        NSString * encodedUrl = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
+                                                                                    NULL,
+                                                                                    (CFStringRef)imageSelectedURL,
+                                                                                    NULL,
+                                                                                    (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                                                    kCFStringEncodingUTF8));
+        
+        NSURL *tinyUrl = [NSURL URLWithString: [NSString stringWithFormat:@"http://tinyurl.com/api-create.php?url=%@", encodedUrl]];
+        NSString *shortURL = [NSString stringWithContentsOfURL:tinyUrl encoding:NSASCIIStringEncoding error:nil];
+        NSLog(@"Long: %@ - Short: %@",imageSelectedURL,shortURL);
+         */
+        NSURL *sentURL = [NSURL URLWithString:imageSelected.imageURL];
+        activityItems = @[postText, sentURL];
+    } else {
+        postText = @"enjoying #virtualgallery";
+        activityItems = @[postText];
+    }
+    
+    
+    UIActivityViewController *activityController =
+    [[UIActivityViewController alloc]
+     initWithActivityItems:activityItems
+     applicationActivities:nil];
+    activityController.excludedActivityTypes  = @[UIActivityTypeAssignToContact, UIActivityTypeCopyToPasteboard, UIActivityTypePrint, UIActivityTypeSaveToCameraRoll];
+    
+    [self presentViewController:activityController
+                       animated:YES completion:nil];
+}
+
+- (IBAction)peopleValueChanged:(id)sender {
+    
+}
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
 
     [self clearViews];
@@ -429,6 +495,10 @@
             //[textField setFrame:CGRectMake(0, 0, 480, 10)];
             NSArray *searchData = [[textField text] componentsSeparatedByString:@" "];
             Criteria *crit = [[Criteria alloc] initWithData: searchData];
+            [searchBar resignFirstResponder];
+            [searchView setHidden:YES];
+            [pictView bringSubviewToFront:spinner];
+            [spinner startAnimating];
             [model getImagesWithCriteria:crit];
         }
         
@@ -438,11 +508,9 @@
     
 }
 
--(void) imageInfoReceived:(NSDictionary *)response {
-    
-    NSDictionary *imageTitle = [response objectForKey:@"title"];
-    NSString *title = [imageTitle objectForKey:@"_content"];
-    [titleLabel setText:title];
+-(void) imageInfoReceived:(ImageObject *) photo {
+    [titleLabel setText:photo.title];
+    imageSelected = photo;
     detailsTouched = NO;
     
 }
