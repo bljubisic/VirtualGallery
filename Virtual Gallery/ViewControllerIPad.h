@@ -34,17 +34,13 @@
 
 - (IBAction)pressedShareButton:(id)sender;
 - (IBAction)pressedSearchButton:(id)sender;
-- (IBAction)peopleValueChanged:(id) sender;
 - (void) loadFinished: (NSNotification *) notification;
 - (UIPanGestureRecognizer *) createGestureRecognizer;
-- (IBAction)pressedAddButton:(id)sender;
 - (void) move: (id) sender;
 - (void) moveMidOuterImage: (NSString *) initialPosition;
 - (void) moveCentralImage:(int) changeIndex;
 - (void) resetViews;
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar;
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar;
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar;
 - (void)clearViews;
 - (void)imageInfoReceived:(ImageObject *) photo;
 

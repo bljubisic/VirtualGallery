@@ -38,6 +38,7 @@
     
     NSString *oauthToken;
     NSString *oauthTokenSecret;
+    NSURLConnection* connection;
 }
 
 @property (nonatomic, retain) NSMutableArray *centralImages;
@@ -45,13 +46,11 @@
 @property (retain) id delegate;
 
 - (id)initWithAPIKey:(NSString *)inKey sharedSecret:(NSString *)inSharedSecret;
-- (BOOL) login:(NSString *) username withPass: (NSString *) password;
 - (void) getRecentImages:(BOOL) forFuzzy;
 - (void) getFuzzyRelatedImagesFor:(NSArray *) tags;
 - (void) getImageInfo:(NSString *) imageID;
 - (void) getImageInfoForFuzzy:(NSString *)imageID;
 - (void) getSearchResultFor:(Criteria *) criteria;
-- (BOOL) uploadImage: (ImageObject *) image;
 - (void) getImageExif: (NSString *) imageID;
 
 @end

@@ -40,13 +40,14 @@
 		photoWebPageSource = kDefaultFlickrPhotoWebPageSource;
 		authEndpoint = kDefaultFlickrAuthEndpoint;
         uploadEndpoint = kDefaultFlickrUploadEndpoint;
+        centralLine = NO;
+        fuzzyLine = NO;
+        imageInfoForFuzzy = NO;
+        imageInfoForExif = NO;
+        jsonString = [[NSString alloc] init];
+        data = [[NSMutableData alloc] init];
     }
-    centralLine = NO;
-    fuzzyLine = NO;
-    imageInfoForFuzzy = NO;
-    imageInfoForExif = NO;
-    jsonString = [[NSString alloc] init];
-    data = [[NSMutableData alloc] init];
+
     return self;
 }
 
@@ -71,7 +72,7 @@
     imageInfoForFuzzy = forFuzzy;
     // Setup and start async download
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL: url];
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
 }
 
@@ -91,7 +92,7 @@
 
     // Setup and start async download
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL: url];
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
 }
 
@@ -119,7 +120,7 @@
     // Setup and start async download
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL: url];
     //NSLog(@"flickr getFuzzyRelatedImages URL: %@", urlString);
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
 }
 
@@ -138,7 +139,7 @@
     // Setup and start async download
     imageInfoForFuzzy = YES;
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL: url];
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
 }
 - (void) getImageInfo:(NSString *) imageID {
@@ -155,7 +156,7 @@
     // Setup and start async download
     
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL: url];
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
 }
 
@@ -173,7 +174,7 @@
     // Setup and start async download
     
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL: url];
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
 }
 

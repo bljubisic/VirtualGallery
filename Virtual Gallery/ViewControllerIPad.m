@@ -138,7 +138,7 @@
     [titleLabel setBackgroundColor:[UIColor clearColor]];
     [titleLabel setTextColor:[UIColor colorWithRed:157.0/255.0 green:157.0/255.0 blue:157.0/255.0 alpha:1.0]];
     [titleLabel setText:@"Title"];
-    [titleLabel setTextAlignment:UITextAlignmentCenter];
+    [titleLabel setTextAlignment:NSTextAlignmentCenter];
     
     UIBarButtonItem *title = [[UIBarButtonItem alloc] initWithCustomView:titleLabel];
     [toolbarButtons insertObject:title atIndex:2];

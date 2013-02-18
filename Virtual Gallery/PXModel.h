@@ -33,7 +33,6 @@
 
 - (void) getRecentImages:(BOOL) forFuzzy;
 - (void) getImageInfo:(NSString *)imageID forFuzzy:(BOOL) isFuzzy;
-- (void) getImagesWithSameCategory:(NSNumber *) category;
 - (void) getFuzzyRelatedImagesFor:(NSArray *) tags;
 - (void) getSearchResultForCrit:(Criteria *) crit;
 - (void) getImageExif:(NSString *) imageID;
