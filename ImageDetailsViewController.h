@@ -29,6 +29,7 @@
 
 @property (retain) id delegate;
 @property (strong, nonatomic) IBOutlet UIView *view;
+@property (strong, retain) UIActivityIndicatorView *spinner;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *imageScrollView;
 @property (weak, nonatomic) IBOutlet UIView *detailsView;
@@ -50,6 +51,7 @@
 
 @property (strong, nonatomic) ImageObject *image;
 @property (strong, nonatomic) ImageModel *model;
+@property (strong, nonatomic) UIImage *tempImage;
 
 - (IBAction)pressedShareButton:(id) sender;
 

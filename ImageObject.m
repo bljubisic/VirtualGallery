@@ -68,9 +68,10 @@
     [self setImageID:photo[@"id"]];
     if(photo[@"title"])
         [self setTitle: photo[@"title"]];
-    [self setAuthor: photo[@"username"]];
+    
     if([photo[@"owner"] isKindOfClass:[NSDictionary class]]) {
         [self setAuthorID: photo[@"owner"][@"nsid"]];
+        [self setAuthor: photo[@"owner"][@"username"]];
         self.authorFirstName = [[NSString alloc] initWithString:photo[@"owner"][@"realname"]];
         NSString *authorFarm = photo[@"owner"][@"iconfarm"];
         NSString *authorServer = photo[@"owner"][@"iconserver"];

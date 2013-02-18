@@ -36,6 +36,8 @@
 @synthesize authorLastName;
 @synthesize authorImage;
 @synthesize description;
+@synthesize spinner;
+@synthesize tempImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -51,10 +53,13 @@
     [super viewDidLoad];
     [model setDelegate:self];
     shownOverlay = NO;
+    /*
     NSURL * tmpURLImage = [NSURL URLWithString:image.imageURLLarge];
     NSData * imageData = [NSData dataWithContentsOfURL:tmpURLImage];
+     */
     
-    imageView.image = [[UIImage alloc] initWithData:imageData];
+    imageView.image = tempImage;
+     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchImage:)];
     [tapRecognizer setDelegate:self];
     //CGRect imageViewFrame = imageView.frame;
@@ -89,10 +94,12 @@
     [panRecognizer setMinimumNumberOfTouches:1];
     [panRecognizer setMaximumNumberOfTouches:1];
     [panRecognizer setDelegate:self];
+    [model getImageInfo:image];
     if([self.image.origin intValue] == 1)
         [model getImageExif:self.image];
     [detailsView addGestureRecognizer:panRecognizer];
     [imageScrollView addGestureRecognizer:(UITapGestureRecognizer *) tapRecognizer];
+    [spinner stopAnimating];
 }
 
 - (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView
@@ -143,6 +150,7 @@
     NSData *authorImgData = [NSData dataWithContentsOfURL:tmpAuthorImgUrl];
     
     authorImage.image = [[UIImage alloc] initWithData:authorImgData];
+    self.image = photo;
     [model getImageExif:image];
 }
 

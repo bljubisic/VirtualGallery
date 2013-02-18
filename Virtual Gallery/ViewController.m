@@ -24,6 +24,7 @@
     BOOL detailsTouched;
     UILabel *titleLabel;
     ImageObject *imageSelected;
+    dispatch_queue_t workQ;
 }
 @end
 
@@ -71,6 +72,7 @@
     [spinner startAnimating];
     [model getImagesWithCriteria: nil];
     detailsTouched = NO;
+    workQ = dispatch_queue_create("label for your queue", 0);
 
 }
 
@@ -112,6 +114,15 @@
 
 - (void) touch:(id) sender {
     //if(!detailsTouched) {
+    [spinner removeFromSuperview];
+    /*
+    spinner = nil;
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [spinner setCenter:CGPointMake(480/2.0, 271/2.0)]; // I do this because I'm in landscape mode
+    [self.pictView addSubview:spinner]; // spinner is not visible until started
+    [pictView bringSubviewToFront:spinner];
+    [spinner startAnimating];
+     */
     [tmpView removeFromSuperview];
     CGRect tmpViewFrame = [tmpView frame];
     CGRect senderViewFrame = [[sender view] frame];
@@ -131,7 +142,7 @@
     // This is how you remove the button from the toolbar and animate it
     [toolbarButtons removeObject:tmpItem];
     //[self setToolbarItems:toolbarButtons animated:YES];
-    [self.mainToolbar setItems:toolbarButtons animated:YES];
+    //[self.mainToolbar setItems:toolbarButtons animated:YES];
     
     titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0 , 11.0f, 100.0f, 21.0f)];
     [titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18]];
@@ -152,22 +163,44 @@
             imageSelected = tmpImage;
         }
     }
-    else
-        [self showCentralImage: tmpImage];
+    else {
 
+        [self showCentralImage: tmpImage];
+    }
+    //[spinner stopAnimating];
 }
 
 -(void) showCentralImage: (ImageObject *) image {
-    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainStoryboard"
-                                                  bundle:nil];
-    ImageDetailsViewController *imageDetails = [sb instantiateViewControllerWithIdentifier:@"DetailsViewController"];
     
-    imageDetails.delegate = self;
-    [imageDetails setImage: image];
-    [imageDetails setModel:model];
-    [self presentViewController:imageDetails animated:YES completion:nil];
+    UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [activity setCenter:CGPointMake(480/2.0, 271/2.0)]; // I do this because I'm in landscape mode
+    [self.pictView addSubview:activity]; // spinner is not visible until started
+    [pictView bringSubviewToFront:activity];
+    [activity startAnimating];
+    dispatch_async(workQ, ^{
+        UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainStoryboard"
+                                                      bundle:nil];
+        ImageDetailsViewController *imageDetails = [sb instantiateViewControllerWithIdentifier:@"DetailsViewController"];
+        
+        imageDetails.delegate = self;
+        [imageDetails setImage: image];
+        NSURL * tmpURLImage = [NSURL URLWithString:image.imageURLLarge];
+        NSData * imageData = [NSData dataWithContentsOfURL:tmpURLImage];
+        UIImage *tmpImage = [[UIImage alloc] initWithData:imageData];
+        imageDetails.tempImage = tmpImage;
+        [imageDetails setModel:model];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [activity stopAnimating];
+            [self finishedProcessing: imageDetails];
+        });
+    });
 }
 
+-(void) finishedProcessing: (ImageDetailsViewController *) imageDetails {
+    
+    
+    [self presentViewController:imageDetails animated:YES completion:nil];
+}
 -(void) doneButtonPressed {
 
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -440,6 +473,13 @@
         [pictView bringSubviewToFront:searchView];
         [searchView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"background1.png"]]];
         [searchView setHidden:NO];
+        for (UIView *searchBarSubview in [commandTextField subviews]) {
+            
+            if([searchBarSubview isKindOfClass:[UITextField class]]){
+                UITextField *textField = (UITextField*)searchBarSubview;
+                [textField becomeFirstResponder];
+            }
+        }
     }
     else {
         [searchView setHidden:YES];
