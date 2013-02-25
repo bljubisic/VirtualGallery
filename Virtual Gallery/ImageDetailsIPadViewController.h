@@ -50,6 +50,7 @@
 
 @property (strong, nonatomic) ImageObject *image;
 @property (strong, nonatomic) ImageModel *model;
+@property (strong, nonatomic) UIImage *tempImage;
 
 - (IBAction)pressedShareButton:(id) sender;
 

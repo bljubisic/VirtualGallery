@@ -76,10 +76,6 @@
     [self.imageScrollView setShowsHorizontalScrollIndicator:NO];
     self.imageScrollView.showsVerticalScrollIndicator = NO;
     self.name.text = self.image.title;
-    if([self.image.origin intValue] == 0)
-        self.name.text = [self.name.text stringByAppendingString:@"flickr"];
-    else
-        self.name.text = [self.name.text stringByAppendingString:@"500px"];
     [self.view bringSubviewToFront:imageScrollView];
     [self.view bringSubviewToFront:detailsView];
     authorFirstName.text = self.image.authorFirstName;

@@ -7,7 +7,7 @@
         <!--View Controller IPad-->
         <scene sceneID="cek-OP-xhc">
             <objects>
-                <viewController id="V9A-n8-5Ev" userLabel="View Controller IPad" customClass="ViewControllerIPad" sceneMemberID="viewController">
+                <viewController autoresizesArchivedViewToFullSize="NO" wantsFullScreenLayout="YES" id="V9A-n8-5Ev" userLabel="View Controller IPad" customClass="ViewControllerIPad" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sZJ-61-mY9">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -17,7 +17,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view hidden="YES" contentMode="scaleToFill" id="nHR-P7-Vb9">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="424"/>
+                                        <rect key="frame" x="0.0" y="-8" width="1024" height="424"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <searchBar contentMode="redraw" showsCancelButton="YES" id="I2B-Yp-ccR">
@@ -265,6 +265,45 @@
         <image name="menu.png" width="29" height="31"/>
         <image name="shutter.png" width="29" height="31"/>
     </resources>
+    <classes>
+        <class className="ImageDetailsIPadViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ImageDetailsIPadViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doneTouched:"/>
+                <relationship kind="action" name="pressedShareButton:"/>
+                <relationship kind="outlet" name="aperture" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="authorFirstName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="authorImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="authorLastName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="camera" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="description" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="detailsView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="exposure" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="focalLength" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="imageScrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="iso" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="licence" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="shareToolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="view" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="ViewControllerIPad" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewControllerIPad.h"/>
+            <relationships>
+                <relationship kind="action" name="pressedSearchButton:"/>
+                <relationship kind="action" name="pressedShareButton:"/>
+                <relationship kind="outlet" name="addButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="commandTextField" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="mainToolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="pictView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="searchButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="searchView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="shareButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

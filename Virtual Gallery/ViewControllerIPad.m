@@ -24,6 +24,7 @@
     BOOL detailsTouched;
     UILabel *titleLabel;
     ImageObject *imageSelected;
+    dispatch_queue_t workQ;
 }
 
 @end
@@ -73,6 +74,7 @@
     [spinner startAnimating];
     [model getImagesWithCriteria: nil];
     detailsTouched = NO;
+    workQ = dispatch_queue_create("label for your queue", 0);
     
 }
 
@@ -158,14 +160,35 @@
 }
 
 -(void) showCentralImage: (ImageObject *) image {
-    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainStoryboardIpad"
-                                                  bundle:nil];
-    ImageDetailsIPadViewController *imageDetails = [sb instantiateViewControllerWithIdentifier:@"DetailsViewIPadController"];
     
-    imageDetails.delegate = self;
-    [imageDetails setImage: image];
-    [imageDetails setModel:model];
-    [imageDetails setDelegate:self];
+    UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [activity setCenter:CGPointMake(1024/2.0, 768/2.0)]; // I do this because I'm in landscape mode
+    [self.pictView addSubview:activity]; // spinner is not visible until started
+    [pictView bringSubviewToFront:activity];
+    [activity startAnimating];
+    dispatch_async(workQ, ^{
+        UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainStoryboardIpad"
+                                                      bundle:nil];
+        ImageDetailsIPadViewController *imageDetails = [sb instantiateViewControllerWithIdentifier:@"DetailsViewIPadController"];
+        
+        imageDetails.delegate = self;
+        [imageDetails setImage: image];
+        NSURL * tmpURLImage = [NSURL URLWithString:image.imageURLLarge];
+        NSData * imageData = [NSData dataWithContentsOfURL:tmpURLImage];
+        UIImage *tmpImage = [[UIImage alloc] initWithData:imageData];
+        imageDetails.tempImage = tmpImage;
+        [imageDetails setModel:model];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [activity stopAnimating];
+            [self finishedProcessing: imageDetails];
+        });
+    });
+    
+}
+
+-(void) finishedProcessing: (ImageDetailsIPadViewController *) imageDetails {
+    
+    
     [self presentViewController:imageDetails animated:YES completion:nil];
 }
 
@@ -419,6 +442,13 @@
         [pictView bringSubviewToFront:searchView];
         [searchView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bgIPad.png"]]];
         [searchView setHidden:NO];
+        for (UIView *searchBarSubview in [commandTextField subviews]) {
+            
+            if([searchBarSubview isKindOfClass:[UITextField class]]){
+                UITextField *textField = (UITextField*)searchBarSubview;
+                [textField becomeFirstResponder];
+            }
+        }
     }
     else {
         [searchView setHidden:YES];
