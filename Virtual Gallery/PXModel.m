@@ -18,7 +18,7 @@
 -(void) getRecentImages:(BOOL) forFuzzy {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 
-    [PXRequest requestForPhotoFeature:kPXAPIHelperDefaultFeature resultsPerPage:10 page:10 photoSizes:PXPhotoModelSizeSmallThumbnail | PXPhotoModelSizeLarge completion:^(NSDictionary *results, NSError *error) {
+    [PXRequest requestForPhotoFeature:kPXAPIHelperDefaultFeature resultsPerPage:10 page:10 photoSizes:PXPhotoModelSizeSmallThumbnail | PXPhotoModelSizeLarge sortOrder:PXAPIHelperPhotoFeaturePopular except:PXPhotoModelCategoryNude completion:^(NSDictionary *results, NSError *error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         if (results)
         {
@@ -30,7 +30,7 @@
 -(void) getSearchResultForCrit:(Criteria *)crit {
     
     NSString *term = crit.freeText;
-    [PXRequest requestForSearchTerm:term completion:^(NSDictionary *results, NSError *error) {
+    [PXRequest requestForSearchTerm:term page:1 resultsPerPage:9 photoSizes:PXPhotoModelSizeSmallThumbnail | PXPhotoModelSizeLarge except:PXPhotoModelCategoryNude completion:^(NSDictionary *results, NSError *error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         if (results)
         {
@@ -115,7 +115,7 @@
     //NSLog(@"px getFuzzyRelatedImages");
     NSString *tagsString = [tags componentsJoinedByString:@","];
 
-    [PXRequest requestForSearchTag:tagsString page:10 resultsPerPage:10 photoSizes:kPXAPIHelperDefaultPhotoSize completion:^(NSDictionary *results, NSError *error) {
+    [PXRequest requestForSearchTag:tagsString page:1 resultsPerPage:9 photoSizes:PXPhotoModelSizeSmallThumbnail | PXPhotoModelSizeLarge except:PXPhotoModelCategoryNude completion:^(NSDictionary *results, NSError *error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         if (results)
         {
